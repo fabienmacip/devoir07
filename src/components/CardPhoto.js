@@ -22,6 +22,8 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import {API_URL} from '../config';
+import {Link, Router} from 'react-router-dom';
+
 
 export default function CardPhoto({photo}) {
   
@@ -46,7 +48,14 @@ export default function CardPhoto({photo}) {
       </CardContent>
       <CardActions>
         <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+        
+          <Link to={`/photos/${photo.id}`}>
+            <Button size="small">
+              Learn More
+            </Button>
+          </Link>
+
+        
       </CardActions>
     </Card>
   );
