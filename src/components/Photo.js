@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useParams, Link} from 'react-router-dom';
-import {API_URL} from '../config';
+import {API_URL, UPLOADS_URL} from '../config';
 import Skeleton from '@mui/material/Skeleton';
 import {Grid,Button} from '@mui/material';
 import { AiFillCaretLeft } from "react-icons/ai";
@@ -13,16 +13,14 @@ export default function Photo() {
   let [isLoading, setIsLoading] = useState(false)
 
   useEffect( () => {
-    console.log("ID : " + id);
-    fetch(`${API_URL}/photos/${id}`)
+
+    fetch(`${API_URL}/photos/${id}?populate=*`)
       .then(res => res.json())
       .then(res => {
         setPhoto(res)
         setIsLoading(true)
       })
   })
-
-//photoState.image[0].formats.small.url
 
   return (
     <div>
@@ -38,16 +36,10 @@ export default function Photo() {
 
 
       <Grid container spacing={2}>
-        <Grid item sm="6">
+        <Grid item sm={6}>
         <div className="postImg">
-          {isLoading ? <img src={API_URL + photoState.image.formats.small.url} alt="photographie" /> : <Skeleton variant="text" width={400} height={300} />}
+          {isLoading ? <div><img src={UPLOADS_URL + photoState.image[0].formats.small.url} alt="photographie" /><div>{photoState.image[0].id}</div></div> : <Skeleton variant="text" width={400} height={300} />}
         </div>
-
-
-        </Grid>
-        <Grid item sm="6">
-          <img src='{isLoading ? photoState.url : <Skeleton variant="rect" width={210} height={118}/>}' alt="photographie"/>
-          <h3>{isLoading ? photoState.titre : <Skeleton variant="text" width={400} height={300} />}</h3>
         </Grid>
       </Grid>
 
