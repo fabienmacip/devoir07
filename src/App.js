@@ -4,7 +4,7 @@ import React, { version } from 'react';
 import Photos from './components/Photos';
 import Photo from './components/Photo';
 import Container from '@mui/material/Container';
-import {Route, Routes} from 'react-router-dom';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
 const routes = [
   {
@@ -33,19 +33,26 @@ const HandleRoute = route => (
 
 function App() {
   
+/*   {routes.map((route,i) =>(
+    <HandleRoute key={i} {...route} />
+  ))}
+ */
+
   return (
     <Container>
 
       <div className="App">
+      
+      
         <Routes>
           
-            {routes.map((route,i) =>(
-              <HandleRoute key={i} {...route} />
-            ))}
-
+            <Route path="/" element={<Photos />}></Route>
+            <Route path="/photos/:id" element={<Photo />}></Route>
             <Route render={() => <h2>Page non trouvée</h2>} />
 
         </Routes>
+      
+      
         
         
 
