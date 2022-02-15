@@ -1,7 +1,11 @@
 import {URL_PHOTOS} from '../config';
+import axios from "axios";
 
 function findAll() {
-  return fetch(`${URL_PHOTOS}/?populate=*`,
+
+  return axios.get(`${URL_PHOTOS}/?populate=*`).then((res) => res.data);
+
+/*   return fetch(`${URL_PHOTOS}/?populate=*`,
   {
     method: "GET",
     headers: {
@@ -9,18 +13,24 @@ function findAll() {
     }
   })
   .then(res => res.json())
-/*   .then(response => {
+  .catch(error => console.log(error));
+ */
+
+  /*   .then(response => {
       //setPhotos(JSON.stringify(response))
       setPhotos(response)
       setIsLoading(false)
   }) */
-  .catch(error => console.log(error));
+
+
   
 }
 
 function findOne(id) {
   
-  return fetch(`${URL_PHOTOS}/${id}?populate=*`,
+  return axios.get(`${URL_PHOTOS}/${id}?populate=*`).then((res) => res.data);
+
+/*   return fetch(`${URL_PHOTOS}/${id}?populate=*`,
   {
     method: "GET",
     headers: {
@@ -28,7 +38,10 @@ function findOne(id) {
     }
   })
     .then(res => res.json())
-/*     .then(res => {
+ */
+
+
+    /*     .then(res => {
       setPhoto(res)
       setIsLoading(false)
     }) */

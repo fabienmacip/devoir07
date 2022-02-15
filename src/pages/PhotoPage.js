@@ -4,7 +4,7 @@ import {useParams, Link} from 'react-router-dom';
 import {API_URL, UPLOADS_URL} from '../config';
 import postsAPI from '../services/postsAPI';
 
-import FormPhoto from '../components/forms/formPhoto';
+import FormComment from '../components/forms/formComment';
 
 import Skeleton from '@mui/material/Skeleton';
 import {Grid,Button} from '@mui/material';
@@ -43,7 +43,7 @@ export default function PhotoPage() {
 
       fetchPhoto(id);
 
-  })
+  }, []);
 
   const fetchPhoto = async (id) => {
     const data = await postsAPI.findOne(id);
@@ -69,7 +69,7 @@ export default function PhotoPage() {
         <Grid item sm={6}>
 
         <div className="postImg">
-          {isLoading ? <Skeleton variant="text" width={300} height={250} /> : <div><div><img src={UPLOADS_URL + photoState['data']['attributes']['image']['data'][0]['attributes']['formats']['small'].url} alt="photographie" width={300} height={200} /><div>ID : {photoState['data'].id}</div></div><div>TITRE : {photoState['data']['attributes'].titre}</div></div>}
+          {isLoading ? <Skeleton variant="text" width={300} height={250} /> : <div><div><img src={UPLOADS_URL + photoState['data']['attributes']['image']['data'][0]['attributes']['formats']['medium'].url} alt="photographie" width={400} height={300} /><div>ID : {photoState['data'].id}</div></div><div>TITRE : {photoState['data']['attributes'].titre}</div></div>}
         </div>
         </Grid>
       </Grid>
@@ -79,7 +79,7 @@ export default function PhotoPage() {
 
 
         <Grid item md={6}>
-          <FormPhoto />
+          <FormComment />
         </Grid>
 
 
