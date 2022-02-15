@@ -47,7 +47,7 @@ export default function Photo() {
           {/* JSON.stringify(photoState) */}
         </div>
         <div className="postImg">
-          {isLoading ? <Skeleton variant="text" width={300} height={250} /> : <div><div><img src={UPLOADS_URL + photoState['data']['attributes']['image']['data'][0]['attributes']['formats']['small'].url} alt="photographie" width={300} height={200} /><div>ID : {photoState['data']['attributes']['image']['data'][0].id}</div></div><div>TITRE : {photoState['data']['attributes'].titre}</div></div>}
+          {isLoading ? <Skeleton variant="text" width={300} height={250} /> : <div><div><img src={UPLOADS_URL + photoState['data']['attributes']['image']['data'][0]['attributes']['formats']['small'].url} alt="photographie" width={300} height={200} /><div>ID : {photoState['data'].id}</div></div><div>TITRE : {photoState['data']['attributes'].titre}</div></div>}
         </div>
         </Grid>
       </Grid>

@@ -23,8 +23,8 @@ export default function Photos() {
     })
     .then(res => res.json())
     .then(response => {
-        setPhotos(JSON.stringify(response))
-        //setPhotos(response)
+        //setPhotos(JSON.stringify(response))
+        setPhotos(response)
         setIsLoading(false)
     })
     .catch(error => console.log(error));
@@ -36,19 +36,18 @@ export default function Photos() {
       <h2>
         Liste des photos
       </h2>
-      <div>{ photos }</div>
-      <hr/><hr/>
-
+      <div>{ /* JSON.stringify(photos) */ }</div>
+      
       <Grid container spacing={3}>
-        <ul>
+        
           {isLoading ? (
             <Box>
               <Skeleton variant="rect" width={210} height={118} />
               <Skeleton width="60%" />
               <Skeleton />
             </Box>
-          ) : "coucou" }
-        </ul>
+          ) : photos['data'].map((i) => <div key={i.id}><CardPhoto photo={i}/></div>)}
+        
      </Grid>
 
 
@@ -56,4 +55,6 @@ export default function Photos() {
   )
 }
 
-/* && photos.map((i) => <li key={i.id}>{i.titre}</li>) */
+/* {i['attributes'].titre} */
+
+

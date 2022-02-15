@@ -21,12 +21,12 @@ export default function CardPhoto({photo}) {
       <CardMedia
         component="img"
         height="140"
-        image={photo.image !== null ? UPLOADS_URL + photo.image[0].formats.small.url : "..."}
-        alt={photo.titre}
+        image={photo.image !== null ? UPLOADS_URL + photo['attributes']['image']['data'][0]['attributes']['formats']['small'].url : "..."}
+        alt={photo['attributes'].titre}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {photo.titre}
+          {photo['attributes'].titre}
         </Typography>
         <Typography variant="body2" color="text.secondary">
           L'identifiant de cette image est : {photo.id}.
