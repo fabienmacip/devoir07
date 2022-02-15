@@ -10,12 +10,9 @@ export default function Photos() {
   const [isLoading, setIsLoading] = useState(true)
   const [photos, setPhotos] = useState(null)
   
+  const [lala,setLala] = useState("Lala init")
 
   useEffect(() => {
-
-    // TEST SOLUTION
-    
-    // FIN TEST
 
     fetch('http://localhost:1337/api/photos/?populate=*',
     {
@@ -26,46 +23,21 @@ export default function Photos() {
     })
     .then(res => res.json())
     .then(response => {
-
-      console.log("************ REPONSE PHOTOS : ")
-      console.log(response)
-      console.log("************ FIN RESPONSE")
-
-      response = JSON.parse(JSON.stringify(response))
-      
-      let response2 = []
-      for (let i in response) {
-        response2.push(response[i])
-      }
-            
-      setTimeout(() => {
-
-        setPhotos(response2)
+        setPhotos(JSON.stringify(response))
+        //setPhotos(response)
         setIsLoading(false)
-        
-      }, 1200)
-
     })
+    .catch(error => console.log(error));
+    
   }, []);
-
-  
 
   return (
     <div>
       <h2>
         Liste des photos
       </h2>
-      <Grid container spacing={3}>
-        
-          {isLoading ? (
-            <Box>
-              <Skeleton variant="rect" width={210} height={118} />
-              <Skeleton width="60%" />
-              <Skeleton />
-            </Box>
-          ) : photos && photos.map((j) => <CardPhoto photo={j} key={j.id}/>)}
-        
-     </Grid>
+      <div>{ photos }</div>
+      <hr/><hr/>
 
       <Grid container spacing={3}>
         <ul>
@@ -75,17 +47,13 @@ export default function Photos() {
               <Skeleton width="60%" />
               <Skeleton />
             </Box>
-          ) : photos && photos.map((i) => <li key={i.id}>{i.titre}</li>)}
+          ) : "coucou" }
         </ul>
-     </Grid>
-
-
-     <Grid container spacing={3}>
-        <h6>test 1</h6>
-        <h6>test 4</h6>
      </Grid>
 
 
     </div>
   )
 }
+
+/* && photos.map((i) => <li key={i.id}>{i.titre}</li>) */
