@@ -1,4 +1,4 @@
 const API_URL = 'http://localhost:1337/api'
 const UPLOADS_URL = 'http://localhost:1337'
-
-export {API_URL, UPLOADS_URL}
+const URL_PHOTOS = API_URL + "/photos"
+export {API_URL, UPLOADS_URL, URL_PHOTOS}

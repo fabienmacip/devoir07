@@ -1,20 +1,23 @@
 import React, {useEffect, useState} from 'react';
-import CardPhoto from './CardPhoto';
+import CardPhoto from '../components/CardPhoto';
 
-import {Grid,Box} from '@mui/material';
-import Skeleton from '@mui/material/Skeleton';
+import {Grid} from '@mui/material';
+//import Skeleton from '@mui/material/Skeleton';
 
+import PhotosContentLoader from "../components/loaders/PhotosContentLoader";
 
-export default function Photos() {
+import postsAPI from '../services/postsAPI';
+
+export default function PhotosPage() {
   
   const [isLoading, setIsLoading] = useState(true)
   const [photos, setPhotos] = useState(null)
   
-  const [lala,setLala] = useState("Lala init")
+  
 
   useEffect(() => {
 
-    fetch('http://localhost:1337/api/photos/?populate=*',
+/*     fetch('http://localhost:1337/api/photos/?populate=*',
     {
       method: "GET",
       headers: {
@@ -28,8 +31,17 @@ export default function Photos() {
         setIsLoading(false)
     })
     .catch(error => console.log(error));
-    
+ */    
+
+    fetchAllPhotos();
   }, []);
+
+  const fetchAllPhotos = async () => {
+    const data = await postsAPI.findAll();
+    setPhotos(data);
+    setIsLoading(false);
+
+  }
 
   return (
     <div>
@@ -40,13 +52,7 @@ export default function Photos() {
       
       <Grid container spacing={3}>
         
-          {isLoading ? (
-            <Box>
-              <Skeleton variant="rect" width={210} height={118} />
-              <Skeleton width="60%" />
-              <Skeleton />
-            </Box>
-          ) : photos['data'].map((i) => <div key={i.id}><CardPhoto photo={i}/></div>)}
+          {isLoading ? (<PhotosContentLoader />) : photos['data'].map((i) => <Grid item key={i.id}><CardPhoto photo={i}/></Grid>)}
         
      </Grid>
 

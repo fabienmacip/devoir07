@@ -1,19 +1,19 @@
 //import logo from './logo.svg';
 //import './App.css';
 import React, { version } from 'react';
-import Photos from './components/Photos';
-import Photo from './components/Photo';
+import PhotosPage from './pages/PhotosPage';
+import PhotoPage from './pages/PhotoPage';
 import Container from '@mui/material/Container';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
 const routes = [
   {
     path: "/",
-    component: Photos
+    component: PhotosPage
   },
   {
     path: "/photos/:id",
-    component: Photo
+    component: PhotoPage
   }
 ];
 
@@ -46,8 +46,8 @@ function App() {
       
         <Routes>
           
-            <Route path="/" element={<Photos />}></Route>
-            <Route path="/photos/:id" element={<Photo />}></Route>
+            <Route path="/" element={<PhotosPage />}></Route>
+            <Route path="/photos/:id" element={<PhotoPage />}></Route>
             <Route render={() => <h2>Page non trouvée</h2>} />
 
         </Routes>
