@@ -1,4 +1,4 @@
-import { URL_COMMENTS } from "../config";
+import { URL_COMMENTS, URL_PHOTOS } from "../config";
 import axios from "axios";
 
 function create(comment) {
@@ -6,15 +6,11 @@ function create(comment) {
       console.log("commentaire : " + comment);
       console.log("1 : " + comment.pseudo);
       console.log("2 : " + comment.content);
-      
       console.log(JSON.stringify(comment));
     
-      
-
-
        try {
 
-        return axios.post(URL_COMMENTS, JSON.stringify(comment))
+        return axios.post(URL_COMMENTS, (comment))
         
       } catch(error) {
 
@@ -22,7 +18,6 @@ function create(comment) {
 
       }
  
-
 
     // Simple POST request with a JSON body using fetch
 /*               const requestOptions = {
@@ -38,8 +33,18 @@ function create(comment) {
 
 }
 
+// id est l'id de la photo (du post)
+function findAll(id) {
+ // "http://localhost:1337/api/photos/:id/?populate=comments"
+ 
+ console.log("requete comments");
+ console.log(URL_PHOTOS + "/" + id + "/?populate=comments");
+
+  return axios.get(URL_PHOTOS + "/" + id + "/?populate=comments").then((res) => res.data);
+}
 
 
 export default {
   create,
+  findAll
 };

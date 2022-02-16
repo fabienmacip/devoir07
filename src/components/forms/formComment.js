@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import TextField from '@mui/material/TextField';
 import {Button} from '@mui/material';
 import commentsAPI from "../../services/commentsAPI";
 
 const FormComment = (props) => {
 
-  const [comment, setComment] = useState({});
+  const [comment, setComment] = useState({photo: props.photo});
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -13,10 +13,15 @@ const FormComment = (props) => {
     try{
       const data = commentsAPI.create(comment);
       console.log(data);
+      setComment("");
+      props.fetchComments();
+
     } catch(error) {
       console.log(error);
     }
   }
+
+  useEffect(() => {}, [comment]);
 
   const handleChange = ({currentTarget}) => {
     /* const value = currentTarget.value;
@@ -24,6 +29,7 @@ const FormComment = (props) => {
     const {name, value} = currentTarget;
     setComment({
       ...comment,
+      photo:props.id,
       [name]: value,
     })
   }
@@ -39,6 +45,7 @@ const FormComment = (props) => {
         name="pseudo"
         variant="standard"
         onChange={handleChange}
+        value={comment.pseudo || ""}
       />          
     </div>
     <div>
@@ -51,10 +58,11 @@ const FormComment = (props) => {
         rows={4}
         variant="standard"
         onChange={handleChange}
+        value={comment.content || ""}
       />
    </div>
    <div>
-    <Button variant="contained" type="submit">Contained</Button>
+    <Button variant="contained" type="submit">Envoyer</Button>
    </div>
 
   </form>

@@ -47,9 +47,17 @@ function findOne(id) {
     }) */
 }
 
+function getComments(id) {
+
+  // http://localhost:1337/api/photos/2/comments?populate=*
+
+  return axios.get(`${URL_PHOTOS}/${id}/?populate=comments`).then((res) => res.data.data['attributes']['comments'].data);
+}
+
 export default {
   findAll,
   findOne,
+  getComments,
 };
 
 

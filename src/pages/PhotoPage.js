@@ -16,15 +16,17 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import { AiFillCaretLeft } from "react-icons/ai";
+import commentsAPI from '../services/commentsAPI';
 
 
 
 export default function PhotoPage() {
   
   const {id} = useParams()
-  let [photoState, setPhoto] = useState(null)
-  let [isLoading, setIsLoading] = useState(true)
-
+  const [photoState, setPhoto] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const [comments, setComments] = useState([])
+// {"id":"13","pseudo":"Mitch","content":"test direct"},{"id":"208","pseudo":"Peugeot","content":"Le state COMMENT ne se met pas bien à jour."}
   useEffect( () => {
 
 /*     fetch(`${API_URL}/photos/${id}?populate=*`,
@@ -42,7 +44,8 @@ export default function PhotoPage() {
  */
 
       fetchPhoto(id);
-
+      fetchComments();
+      
   }, []);
 
   const fetchPhoto = async (id) => {
@@ -51,6 +54,27 @@ export default function PhotoPage() {
     setIsLoading(false);
 
   }
+
+  const fetchComments = async() => {
+    
+    try {
+      //const data = await commentsAPI.findAll();
+      const data = await postsAPI.getComments(id);
+      setComments(data);
+/*       console.log("DATA");
+      console.log(data);
+      console.log("COMMENTS");
+      console.log(comments); */
+
+    } catch(error) {
+
+      console.log(error)
+    }
+    
+  }
+
+
+
 
   return (
     <div>
@@ -67,7 +91,6 @@ export default function PhotoPage() {
 
       <Grid container spacing={2} className="titre-photo">
         <Grid item sm={6}>
-
         <div className="postImg">
           {isLoading ? <Skeleton variant="text" width={300} height={250} /> : <div><div><img src={UPLOADS_URL + photoState['data']['attributes']['image']['data'][0]['attributes']['formats']['medium'].url} alt="photographie" width={400} height={300} /><div>ID : {photoState['data'].id}</div></div><div>TITRE : {photoState['data']['attributes'].titre}</div></div>}
         </div>
@@ -76,79 +99,55 @@ export default function PhotoPage() {
 
       <Grid container spacing={2}>
 
-
-
         <Grid item md={6}>
-          <FormComment />
+          <FormComment photo={id} fetchComments={fetchComments} />
         </Grid>
 
 
 
         <Grid item md={6}>
           <List>
-            <ListItem alignItems="flex-start">
-              <ListItemAvatar>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-              </ListItemAvatar>
-              <ListItemText
-                primary="Brunch this weekend?"
-                secondary={
-                  <React.Fragment>
-                    <Typography
-                      sx={{ display: 'inline' }}
-                      component="span"
-                      variant="body2"
-                      color="text.primary"
-                    >
-                      Ali Connors
-                    </Typography>
-                    {" — I'll be in your neighborhood doing errands this…"}
-                  </React.Fragment>
-                }
-              />
-            </ListItem>            
-            <ListItem alignItems="flex-start">
-              <ListItemAvatar>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-              </ListItemAvatar>
-              <ListItemText
-                primary="Brunch this weekend?"
-                secondary={
-                  <React.Fragment>
-                    <Typography
-                      sx={{ display: 'inline' }}
-                      component="span"
-                      variant="body2"
-                      color="text.primary"
-                    >
-                      Ali Connors
-                    </Typography>
-                    {" — I'll be in your neighborhood doing errands this…"}
-                  </React.Fragment>
-                }
-              />
-            </ListItem>            
-            <ListItem alignItems="flex-start">
-              <ListItemAvatar>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-              </ListItemAvatar>
-              <ListItemText
-                primary="Brunch this weekend?"
-                secondary={
-                  <React.Fragment>
-                    <Typography
-                      sx={{ display: 'inline' }}
-                      component="span"
-                      variant="body2"
-                      color="text.primary"
-                    >
-                      Ali Connors
-                    </Typography>
-                    {" — I'll be in your neighborhood doing errands this…"}
-                  </React.Fragment>
-                }
-              />
-            </ListItem>                                    
+
+
+
+
+            {comments.map((comment) => (
+
+              <ListItem alignItems="flex-start" key={comment.id}>
+                <ListItemAvatar>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                </ListItemAvatar>
+                <ListItemText
+                  primary={comment['attributes'].pseudo}
+                  secondary={
+                    <React.Fragment>
+                      <Typography
+                        sx={{ display: 'inline' }}
+                        component="span"
+                        variant="body2"
+                        color="text.primary"
+                      >
+                        
+                      {comment['attributes'].content}
+                      </Typography>
+                        
+                      </React.Fragment>
+                    }
+                  />
+                </ListItem>            
+                ))}
+
+
+
+
+
+
+
+
+
+
+
+
           </List>
         </Grid>        
       </Grid>
