@@ -1,5 +1,6 @@
 import { URL_LOGIN } from "../config";
 import axios from "axios";
+import jwtDecode from "jwt-decode";
 
 function authenticate(credentials) {
   return axios.post(URL_LOGIN, credentials)
@@ -11,6 +12,19 @@ function authenticate(credentials) {
   })
 }
 
+function isAuthenticated() {
+  
+  const token = window.localStorage.getItem("authToken")
+
+  if(token) {
+    const {exp} = jwtDecode(token)
+    return(exp * 1000 > new Date().getTime()) // exp est en secondes. On le multiplie par 1000 pour l'avoir en millisecondes.
+  }
+
+  return false
+}
+
 export default {
-  authenticate
+  authenticate,
+  isAuthenticated
 };

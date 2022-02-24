@@ -1,14 +1,22 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import TextField from '@mui/material/TextField';
 import {Button} from '@mui/material';
+import authContext from '../contexts/authContext';
 import authAPI from '../services/authAPI';
+import {Navigate, useNavigate} from "react-router-dom";
+
 
 const LoginPage = () => {
+
+  //const history = useHistory()
+  const navigate = useNavigate()
   
   const [credentials, setCredentials] = useState({
     identifier: "",
     password: ""
   })
+
+  const {setIsAuthenticated} = useContext(authContext)
 
   const handleChange = ({currentTarget}) => {
     const {value,name} = currentTarget // raccourci pour =>   const value = currentTarget.value      const name = currentTarget.name
@@ -22,6 +30,10 @@ const LoginPage = () => {
     event.preventDefault();
     try {
       await authAPI.authenticate(credentials)
+      setIsAuthenticated(true)
+      
+      navigate("../admin")
+      
     } catch(error) {
       console.log(error)
     }

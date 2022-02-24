@@ -1,11 +1,15 @@
 //import logo from './logo.svg';
 //import './App.css';
-import React, { version } from 'react';
+import React, { version, useState } from 'react';
 import PhotosPage from './pages/PhotosPage';
 import PhotoPage from './pages/PhotoPage';
 import LoginPage from './pages/LoginPage';
+import AdminPhotosPage from "./pages/AdminPhotosPage";
+import authAPI from './services/authAPI';
 import Container from '@mui/material/Container';
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {BrowserRouter, Route, Routes, Navigate} from 'react-router-dom';
+import PrivateRoute from './components/PrivateRoute';
+import AuthContext from './contexts/authContext';
 
 const routes = [
   {
@@ -43,28 +47,56 @@ function App() {
   ))}
  */
 
+  const [isAuthenticated,setIsAuthenticated] = useState(authAPI.isAuthenticated)
+
+/*   function PrivateRoute({ children }) {
+    const auth = isAuthenticated;
+    return auth ? children : <Navigate to="/login" />;
+  } */
+
+// <Route path="/admin" element={<PrivateRoute path="/admin" element={<AdminPhotosPage/>} />}></Route>
+// <PrivateRoute path="/admin" element={<AdminPhotosPage />}/>
   return (
-    <Container>
+    <AuthContext.Provider
+      value={{
+        isAuthenticated,
+        setIsAuthenticated
+      }}
+    >
 
-      <div className="App">
-      
-      
-        <Routes>
+      <Container>
+
+        <div className="App">
+        
+        
+          <Routes>
+            
+              <Route path="/" element={<PhotosPage />}></Route>
+              <Route path="/photos/:id" element={<PhotoPage />}></Route>
+              <Route path="/login" element={<LoginPage />}></Route>
+              <Route
+                path="/admin"
+                element={
+                  <PrivateRoute>
+                    <AdminPhotosPage />
+                  </PrivateRoute>
+                }
+                />
+              
+              <Route render={() => <h2>Page non trouvée</h2>} />
+            
+          </Routes>
+        
+        
           
-            <Route path="/" element={<PhotosPage />}></Route>
-            <Route path="/photos/:id" element={<PhotoPage />}></Route>
-            <Route path="/login" element={<LoginPage />}></Route>
-            <Route render={() => <h2>Page non trouvée</h2>} />
+          
 
-        </Routes>
-      
-      
-        
-        
+        </div>
 
-      </div>
+      </Container>
 
-    </Container>
+    </AuthContext.Provider>
+    
     
   );
 }
