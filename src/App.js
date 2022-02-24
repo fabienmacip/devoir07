@@ -3,6 +3,7 @@
 import React, { version } from 'react';
 import PhotosPage from './pages/PhotosPage';
 import PhotoPage from './pages/PhotoPage';
+import LoginPage from './pages/LoginPage';
 import Container from '@mui/material/Container';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
@@ -14,6 +15,10 @@ const routes = [
   {
     path: "/photos/:id",
     component: PhotoPage
+  },
+  {
+    path: "/login",
+    component: LoginPage
   }
 ];
 
@@ -48,6 +53,7 @@ function App() {
           
             <Route path="/" element={<PhotosPage />}></Route>
             <Route path="/photos/:id" element={<PhotoPage />}></Route>
+            <Route path="/login" element={<LoginPage />}></Route>
             <Route render={() => <h2>Page non trouvée</h2>} />
 
         </Routes>
