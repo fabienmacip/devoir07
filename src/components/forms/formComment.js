@@ -12,6 +12,7 @@ const FormComment = (props) => {
 
     try{
       const data = commentsAPI.create(comment);
+      console.log("DATA");
       console.log(data);
       setComment("");
       props.fetchComments();
@@ -27,9 +28,9 @@ const FormComment = (props) => {
     /* const value = currentTarget.value;
     const name = currentTarget.name; */
     const {name, value} = currentTarget;
+ 
     setComment({
       ...comment,
-      photo:props.id,
       [name]: value,
     })
   }
@@ -37,6 +38,14 @@ const FormComment = (props) => {
   return (
     <form onSubmit={handleSubmit} method="post">
     <div>
+      <TextField
+        id="photo"
+        name="photo"
+        value={props.photo}
+        sx={{
+          display:"none"
+        }}
+      />
       <TextField
         required
         id="pseudo"

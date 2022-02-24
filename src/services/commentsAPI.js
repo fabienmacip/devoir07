@@ -2,6 +2,9 @@ import { URL_COMMENTS, URL_PHOTOS } from "../config";
 import axios from "axios";
 
 function create(comment) {
+
+      comment = "{\"data\":" + JSON.stringify(comment) + "}";
+      comment = JSON.parse(comment);
       console.log("URL : " + URL_COMMENTS);
       console.log("commentaire : " + comment);
       console.log("1 : " + comment.pseudo);
