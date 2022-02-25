@@ -1,12 +1,12 @@
 import React, {useContext} from "react";
-import authContext from "../contexts/authContext";
+import AuthContext from "../contexts/AuthContext";
 import {useNavigate, Navigate, Route} from "react-router-dom";
 //import AdminPhotosPage from "../pages/AdminPhotosPage";
 
 //const PrivateRoute = ({path, component}) => {
   function PrivateRoute ({children}) {
   
-  const {isAuthenticated} = useContext(authContext)
+  const {isAuthenticated} = useContext(AuthContext)
   const {location} = useNavigate()
 
   

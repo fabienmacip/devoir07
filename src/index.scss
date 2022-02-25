@@ -35,3 +35,16 @@ a {
 form div {
   margin-top: 1rem;
 }
+
+nav {
+  display: flex;
+  justify-content: space-around;
+}
+nav a {
+  padding: 1.5rem;
+  background-color: rgb(238,238,238);
+  color: #000;
+}
+nav a:hover {
+  background-color: rgb(243,243,243);
+}

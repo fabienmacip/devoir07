@@ -1,7 +1,7 @@
 import React, {useState, useContext} from 'react';
 import TextField from '@mui/material/TextField';
 import {Button} from '@mui/material';
-import authContext from '../contexts/authContext';
+import authContext from '../contexts/AuthContext';
 import authAPI from '../services/authAPI';
 import {Navigate, useNavigate} from "react-router-dom";
 

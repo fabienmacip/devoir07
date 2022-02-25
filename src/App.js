@@ -9,7 +9,9 @@ import authAPI from './services/authAPI';
 import Container from '@mui/material/Container';
 import {BrowserRouter, Route, Routes, Navigate} from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute';
-import AuthContext from './contexts/authContext';
+import AuthContext from './contexts/AuthContext';
+import NavBar from './components/NavBar';
+
 
 const routes = [
   {
@@ -69,8 +71,8 @@ function App() {
         <div className="App">
         
         
+              <NavBar />
           <Routes>
-            
               <Route path="/" element={<PhotosPage />}></Route>
               <Route path="/photos/:id" element={<PhotoPage />}></Route>
               <Route path="/login" element={<LoginPage />}></Route>
