@@ -1,6 +1,6 @@
 //import logo from './logo.svg';
 //import './App.css';
-import React, { version, useState } from 'react';
+import React, { version, useState, useEffect } from 'react';
 import PhotosPage from './pages/PhotosPage';
 import PhotoPage from './pages/PhotoPage';
 import LoginPage from './pages/LoginPage';
@@ -50,6 +50,11 @@ function App() {
  */
 
   const [isAuthenticated,setIsAuthenticated] = useState(authAPI.isAuthenticated)
+
+  useEffect(() => {
+    authAPI.setup()
+    authAPI.isAuthenticated()
+  })
 
 /*   function PrivateRoute({ children }) {
     const auth = isAuthenticated;

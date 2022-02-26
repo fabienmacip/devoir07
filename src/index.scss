@@ -40,11 +40,12 @@ nav {
   display: flex;
   justify-content: space-around;
 }
-nav a {
+nav a, nav span {
   padding: 1.5rem;
   background-color: rgb(238,238,238);
   color: #000;
 }
-nav a:hover {
+nav a:hover, nav span:hover {
   background-color: rgb(243,243,243);
+  cursor: pointer;
 }

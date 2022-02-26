@@ -30,9 +30,20 @@ function logout() {
   delete axios.defaults.headers["Authorization"]
 }
 
+function setup() {
+  const token = window.localStorage.getItem("authoToken")
+  if(token){
+    const {exp} = jwtDecode(token)
+    if(exp * 1000 > new Date().getTime()){
+      axios.defaults.headers["Authorization"] = "Bearer " + token
+    }
+  }
+}
+
 
 export default {
   authenticate,
   isAuthenticated,
-  logout
+  logout,
+  setup
 };

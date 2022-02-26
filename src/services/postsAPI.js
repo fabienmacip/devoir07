@@ -54,10 +54,15 @@ function getComments(id) {
   return axios.get(`${URL_PHOTOS}/${id}/?populate=comments`).then((res) => res.data.data['attributes']['comments'].data);
 }
 
+function create(photo) {
+  return axios.post(URL_PHOTOS, photo)
+}
+
 export default {
   findAll,
   findOne,
   getComments,
+  create
 };
 
 
