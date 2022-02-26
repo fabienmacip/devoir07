@@ -3,6 +3,9 @@ import {useParams, Link} from 'react-router-dom';
 
 import {API_URL, UPLOADS_URL} from '../config';
 
+import tarifsAPI from '../services/tarifsAPI';
+import TarifsContentLoader from "../components/loaders/TarifsContentLoader";
+import TarifLine from '../components/TarifLine';
 
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -16,98 +19,35 @@ import Typography from '@mui/material/Typography';
 
 export default function TarifsPage() {
 
+  const [isLoading, setIsLoading] = useState(true)
+  const [tarifs, setTarifs] = useState(null)
+
+  useEffect(() => {
+
+    fetchAllTarifs();
+  }, []);
+
+  const fetchAllTarifs = async () => {
+    const data = await tarifsAPI.findAll();
+    setTarifs(data);
+    setIsLoading(false);
+//console.log(data)
+  }
+
+
+
   return(
    <div>
      <h1>
        Prestations et tarifs
      </h1>
-     <ul>
-       <li>
-         qsmdflkj
-       </li>
-     </ul>
 
-     <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-      <ListItem alignItems="flex-start">
-        <ListItemText 
-          primary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: 'inline' }}
-                component="span"
-                variant="h6"
-                color="text.primary"
-              >
-                130 €
-              </Typography>
-              
-            </React.Fragment>
-          }
-          
 
-        />
-        <ListItemText
-          primary="TITRE DE LA PRESTATION"
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                Description de la prestation
-              </Typography>
-              
-            </React.Fragment>
-          }
-        />
-      </ListItem>
-      <Divider variant="inset" component="li" />
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-        </ListItemAvatar>
-        <ListItemText
-          primary="Summer BBQ"
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                to Scott, Alex, Jennifer
-              </Typography>
-              {" — Wish I could come, but I'm out of town this…"}
-            </React.Fragment>
-          }
-        />
-      </ListItem>
-      <Divider variant="inset" component="li" />
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
-        </ListItemAvatar>
-        <ListItemText
-          primary="Oui Oui"
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                Sandra Adams
-              </Typography>
-              {' — Do you have Paris recommendations? Have you ever…'}
-            </React.Fragment>
-          }
-        />
-      </ListItem>
+    <List>
+    {isLoading ? (<TarifsContentLoader />) : tarifs['data'].map((i) => <div key={i.id}><ListItem  ><TarifLine tarif={i}/></ListItem><Divider variant="inset" className="tarifs-divider"/></div>)}
     </List>
+
+      
 
 
    </div> 
