@@ -31,7 +31,7 @@ export default function CardPhoto({photo}) {
             {photo['attributes'].titre}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            L'identifiant de cette image est : {photo.id}.
+            L'identifiant de cette image est : {photo.id}.<br/> Sa catégorie est {photo['attributes']['categorie']['data']['attributes'].titre}
           </Typography>
         </CardContent>
         <CardActions>
