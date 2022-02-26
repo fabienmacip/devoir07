@@ -1,9 +1,13 @@
 //import logo from './logo.svg';
 //import './App.css';
 import React, { version, useState, useEffect } from 'react';
+import HomePage from './pages/HomePage';
 import PhotosPage from './pages/PhotosPage';
 import PhotoPage from './pages/PhotoPage';
 import LoginPage from './pages/LoginPage';
+import TarifsPage from './pages/TarifsPage';
+import ContactPage from './pages/ContactPage';
+
 import AdminPhotosPage from "./pages/AdminPhotosPage";
 import authAPI from './services/authAPI';
 import Container from '@mui/material/Container';
@@ -78,17 +82,13 @@ function App() {
         
               <NavBar />
           <Routes>
-              <Route path="/" element={<PhotosPage />}></Route>
+              <Route path="/" element={<HomePage />}></Route>
+              <Route path="/photos" element={<PhotosPage />}></Route>
+              <Route path="/tarifs" element={<TarifsPage />}></Route>
+              <Route path="/contact" element={<ContactPage />}></Route>
               <Route path="/photos/:id" element={<PhotoPage />}></Route>
               <Route path="/login" element={<LoginPage />}></Route>
-              <Route
-                path="/admin"
-                element={
-                  <PrivateRoute>
-                    <AdminPhotosPage />
-                  </PrivateRoute>
-                }
-                />
+
               
               <Route render={() => <h2>Page non trouvée</h2>} />
             

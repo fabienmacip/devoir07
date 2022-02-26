@@ -19,13 +19,17 @@ const NavBar = () => {
       <Link to="/">
         Home
       </Link>
-      {isAuthenticated && <Link to="/admin">
-        Admin
-      </Link>}
-      {!isAuthenticated && <Link to="/login">
-        Connect
-      </Link>}
-      {isAuthenticated && <span onClick={handleDisconnect}>Disconnect</span>}
+      <Link to="/photos">
+        Galerie
+      </Link>
+      <Link to="/tarifs">
+        Tarifs & Prestations
+      </Link>
+      <Link to="/contact">
+        Contact
+      </Link>
+      
+      
     </nav>
   )
 }
