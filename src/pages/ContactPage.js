@@ -8,9 +8,12 @@ import FormContact from '../components/forms/formContact';
 export default function ContactPage() {
 
   return(
-   <div>
-     <FormContact />
-   </div> 
+    <div>
+      <h2>Nous contacter</h2>
+      <div>
+        <FormContact />
+      </div> 
+    </div>
   )
 
 }

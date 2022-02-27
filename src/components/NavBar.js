@@ -2,6 +2,10 @@ import React, {useContext} from "react"
 import {Link, useNavigate} from "react-router-dom"
 import AuthContext from "../contexts/AuthContext"
 import authAPI from "../services/authAPI"
+//import { SocialIcon } from 'react-social-icons';
+/* ReactDOM.render(<SocialIcon url="https://twitter.com/jaketrent" />, document.body); */
+//import FacebookIcon from '@mui/icons-material/Facebook';
+
 
 const NavBar = () => {
   
@@ -16,6 +20,7 @@ const NavBar = () => {
   
   return (
     <nav>
+      <img src="../img/logo.jpg" alt="logo Charles Cantin" width="100%" height="100%"/>
       <Link to="/">
         Home
       </Link>

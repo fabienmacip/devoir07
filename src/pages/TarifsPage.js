@@ -39,7 +39,7 @@ export default function TarifsPage() {
   return(
    <div>
      <h1>
-       Prestations et tarifs
+       Tarifs & Prestations
      </h1>
 
 

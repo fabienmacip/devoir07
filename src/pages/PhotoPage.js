@@ -17,6 +17,7 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import { AiFillCaretLeft } from "react-icons/ai";
 import commentsAPI from '../services/commentsAPI';
+//import { useNavigate } from 'react-router-dom';
 
 
 
@@ -29,23 +30,9 @@ export default function PhotoPage() {
 // {"id":"13","pseudo":"Mitch","content":"test direct"},{"id":"208","pseudo":"Peugeot","content":"Le state COMMENT ne se met pas bien à jour."}
   useEffect( () => {
 
-/*     fetch(`${API_URL}/photos/${id}?populate=*`,
-    {
-      method: "GET",
-      headers: {
-        'Accept': 'Application/json'
-      }
-    })
-      .then(res => res.json())
-      .then(res => {
-        setPhoto(res)
-        setIsLoading(false)
-      })
- */
-
       fetchPhoto(id);
       fetchComments();
-      
+          
   }, []);
 
   const fetchPhoto = async (id) => {
@@ -73,20 +60,20 @@ export default function PhotoPage() {
     
   }
 
-
+  
 
 
   return (
     <div>
 
-      <nav>
-        <Link to="/">
+      
+        <Link to="/photos">
           <Button variant="contained" color="primary">
-            <AiFillCaretLeft />
+            
             <span>Back</span>
           </Button>
         </Link>
-      </nav>
+      
 
 
       <Grid container spacing={2} className="titre-photo">
