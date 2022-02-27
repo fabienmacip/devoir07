@@ -79,7 +79,7 @@ export default function PhotoPage() {
       <Grid container spacing={2} className="titre-photo">
         <Grid item sm={6}>
         <div className="postImg">
-          {isLoading ? <Skeleton variant="text" width={300} height={250} /> : <div><div><img src={UPLOADS_URL + photoState['data']['attributes']['image']['data'][0]['attributes']['formats']['medium'].url} alt="photographie" width={400} height={300} /><div>ID : {photoState['data'].id}</div></div><div>TITRE : {photoState['data']['attributes'].titre}</div></div>}
+          {isLoading ? <Skeleton variant="text" width={300} height={250} /> : <div><div><img src={UPLOADS_URL + photoState['data']['attributes']['image']['data'][0]['attributes']['formats']['large'].url} alt="photographie" width="100%" /></div><h3>{photoState['data']['attributes'].titre}</h3></div>}
         </div>
         </Grid>
       </Grid>

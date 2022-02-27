@@ -49,15 +49,17 @@ export default function PhotosPage() {
 
   return (
     <div>
-      <h2>
-        GALERIE
-      </h2>
+      <h1>
+        Galerie
+      </h1>
       <div id="categories-div"><ul id="categories-nav">
       <li className='categories-nav' key={0}><Button variant="contained" type="submit" id={0} onClick={handleFiltreCategorie}>Tout</Button></li>
         {isLoading ? "..." : categories['data'].map((c) => <li className='categories-nav' key={c.id}>
       <Button variant="contained" type="submit" id={c.id} onClick={handleFiltreCategorie}>{c['attributes'].titre}</Button></li>)}</ul></div>
       
-
+      <h3>
+        {filtreCategories != 0 ? categories['data'].filter((j) => {return j.id == filtreCategories}).map((j) => j['attributes'].titre) : ""}
+      </h3>
 
       <Grid container spacing={3}>
         

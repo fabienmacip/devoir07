@@ -27,16 +27,11 @@ export default function CardPhoto({photo}) {
           alt={photo['attributes'].titre}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {photo['attributes'].titre}
-          </Typography>
           <Typography variant="body2" color="text.secondary">
-            L'identifiant de cette image est : {photo.id}.<br/> Sa catégorie est {photo['attributes']['categorie']['data']['attributes'].titre}
+            {photo['attributes'].titre}
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">Share</Button>
-          
             <Link to={`/photos/${photo.id}`}>
               <Button size="small">
                 Learn More

@@ -44,7 +44,7 @@ export default function TarifsPage() {
 
 
     <List>
-    {isLoading ? (<TarifsContentLoader />) : tarifs['data'].map((i) => <div key={i.id}><ListItem  ><TarifLine tarif={i}/></ListItem><Divider variant="inset" className="tarifs-divider"/></div>)}
+    {isLoading ? (<TarifsContentLoader />) : tarifs['data'].map((i) => <div key={i.id}><ListItem className="li-tarif" ><TarifLine tarif={i}/></ListItem><Divider variant="inset" className="tarifs-divider"/></div>)}
     </List>
 
       

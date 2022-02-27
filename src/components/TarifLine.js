@@ -20,10 +20,13 @@ export default function TarifLine({tarif}) {
     
     
     <ListItemText 
+      
       primary={
+        
         <React.Fragment>
+          
           <Typography
-            sx={{ display: 'inline' }}
+          sx={{ display: 'inline'}}
             component="span"
             variant="h6"
             color="text.primary"

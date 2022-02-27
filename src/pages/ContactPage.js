@@ -9,7 +9,7 @@ export default function ContactPage() {
 
   return(
     <div>
-      <h2>Nous contacter</h2>
+      <h1>Nous contacter</h1>
       <div>
         <FormContact />
       </div> 
