@@ -1,5 +1,11 @@
-import {URL_PHOTOS, URL_CATEGORIES} from '../config';
+import {URL_PHOTOS, URL_CATEGORIES, URL_HOME_PHOTO} from '../config';
 import axios from "axios";
+
+function findHomePhoto() {
+
+  return axios.get(`${URL_HOME_PHOTO}/?populate=*`).then((res) => res.data);
+
+}
 
 function findAll() {
 
@@ -13,27 +19,10 @@ function findAllCategories() {
 
 }
 
-
-
 function findOne(id) {
   
   return axios.get(`${URL_PHOTOS}/${id}?populate=*`).then((res) => res.data);
 
-/*   return fetch(`${URL_PHOTOS}/${id}?populate=*`,
-  {
-    method: "GET",
-    headers: {
-      'Accept': 'Application/json'
-    }
-  })
-    .then(res => res.json())
- */
-
-
-    /*     .then(res => {
-      setPhoto(res)
-      setIsLoading(false)
-    }) */
 }
 
 function getComments(id) {
@@ -52,7 +41,8 @@ export default {
   findAllCategories,
   findOne,
   getComments,
-  create
+  create,
+  findHomePhoto
 };
 
 
