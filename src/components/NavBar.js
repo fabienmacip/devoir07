@@ -4,7 +4,8 @@ import AuthContext from "../contexts/AuthContext"
 import authAPI from "../services/authAPI"
 //import { SocialIcon } from 'react-social-icons';
 /* ReactDOM.render(<SocialIcon url="https://twitter.com/jaketrent" />, document.body); */
-//import FacebookIcon from '@mui/icons-material/Facebook';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
 
 
 const NavBar = () => {
@@ -20,7 +21,7 @@ const NavBar = () => {
   
   return (
     <nav>
-      <img src="../img/logo.jpg" alt="logo Charles Cantin" width="100%" height="100%"/>
+      <img src="../img/logo.jpg" alt="logo Charles Cantin"  />
       <Link to="/">
         Home
       </Link>
@@ -33,7 +34,8 @@ const NavBar = () => {
       <Link to="/contact">
         Contact
       </Link>
-      
+      <FacebookIcon color="primary" sx={{ fontSize: 60}}/>      
+      <InstagramIcon color="secondary" sx={{ fontSize: 60}}/>      
       
     </nav>
   )
