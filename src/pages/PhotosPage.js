@@ -52,10 +52,10 @@ export default function PhotosPage() {
       <h1>
         Galerie
       </h1>
-      <div id="categories-div"><ul id="categories-nav">
-      <li className='categories-nav' key={0}><Button variant="contained" type="submit" id={0} onClick={handleFiltreCategorie}>Tout</Button></li>
-        {isLoading ? "..." : categories['data'].map((c) => <li className='categories-nav' key={c.id}>
-      <Button variant="contained" type="submit" id={c.id} onClick={handleFiltreCategorie}>{c['attributes'].titre}</Button></li>)}</ul></div>
+      <div id="categories-div"><Grid container spacing={1} id="categories-nav">
+      <Grid item className='categories-nav' key={0}><Button variant="contained" type="submit" id={0} onClick={handleFiltreCategorie}>Tout</Button></Grid>
+        {isLoading ? "..." : categories['data'].map((c) => <Grid item className='categories-nav' key={c.id}>
+      <Button variant="contained" type="submit" id={c.id} onClick={handleFiltreCategorie}>{c['attributes'].titre}</Button></Grid>)}</Grid></div>
       
       <h3>
         {filtreCategories != 0 ? categories['data'].filter((j) => {return j.id == filtreCategories}).map((j) => j['attributes'].titre) : ""}
@@ -72,6 +72,12 @@ export default function PhotosPage() {
 
     </div>
   )
+
+/*   <div id="categories-div"><ul id="categories-nav">
+  <li className='categories-nav' key={0}><Button variant="contained" type="submit" id={0} onClick={handleFiltreCategorie}>Tout</Button></li>
+    {isLoading ? "..." : categories['data'].map((c) => <li className='categories-nav' key={c.id}>
+  <Button variant="contained" type="submit" id={c.id} onClick={handleFiltreCategorie}>{c['attributes'].titre}</Button></li>)}</ul></div>
+ */
 
   /* {isLoading ? (<PhotosContentLoader />) : photos['data'].map((i) => <Grid item key={i.id} className={`cat${i['attributes']['categorie']['data'].id}`}><CardPhoto photo={i}/></Grid>)} */
 }

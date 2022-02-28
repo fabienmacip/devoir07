@@ -5,11 +5,6 @@ function create(comment) {
 
       comment = "{\"data\":" + JSON.stringify(comment) + "}";
       comment = JSON.parse(comment);
-      console.log("URL : " + URL_COMMENTS);
-      console.log("commentaire : " + comment);
-      console.log("1 : " + comment.pseudo);
-      console.log("2 : " + comment.content);
-      console.log(JSON.stringify(comment));
     
        try {
 
