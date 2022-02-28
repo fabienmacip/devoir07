@@ -19,7 +19,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import Divider from '@material-ui/core/Divider';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { List, ListItem } from "@mui/material";
+import { Icon, List, ListItem } from "@mui/material";
 
 
 const navigationLinks = [
@@ -34,15 +34,10 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: 25,
     
   },
-  avatar: {
+  logo: {
+    maxWidth: 100,
     marginRight: "auto",
-    color: "white",
-    backgroundColor: "black",
-    borderRadius: 0,
-    height: 30,
-    border: "2px solid gray",
-    borderLeft: "12px solid transparent",
-    borderRight: "12px solid transparent",
+    
   },
 
 }));
@@ -57,8 +52,9 @@ const NavBar = () => {
     <AppBar position="sticky" color="default">
       <Container maxWidth="md">
         <ToolBar disableGutters>
-          <Avatar className={styles.avatar}>P</Avatar>
-            <Hidden xsDown>
+          <img src="../img/logo.jpg" alt="logo Charles Cantin" className={styles.logo} />
+          
+            <Hidden smDown>
               {navigationLinks.map((item) => (
                   <Link 
                     key={item.id}
@@ -71,10 +67,12 @@ const NavBar = () => {
                     {item.name}
                   </Link>
               ))}
+              <FacebookIcon color="primary" sx={{ fontSize: 40}}/>      
+              <InstagramIcon color="secondary" sx={{ fontSize: 40}}/>      
             </Hidden>
-            <Hidden smUp>
-              <IconButton>
-                <MenuIcon onClick={() => setOpen(true)} />
+            <Hidden mdUp>
+              <IconButton onClick={() => setOpen(true)} >
+                <MenuIcon />
               </IconButton>
             </Hidden>
         </ToolBar>
@@ -87,16 +85,16 @@ const NavBar = () => {
         onClose={() => setOpen(false)}
       >
         <div>
-          <IconButton>
-            <ChevronRightIcon onClick={() => setOpen(false)} />
+          <IconButton onClick={() => setOpen(false)}>
+            <ChevronRightIcon  />
           </IconButton>
         </div>
         <Divider />
           <List>
             {navigationLinks.map((item) => (
-              <ListItem>
+              <ListItem key={item.id}>
                 <Link 
-                  key={item.id}
+                  
                   className={styles.link}
                   color="textPrimary" 
                   variant="button"
@@ -107,6 +105,12 @@ const NavBar = () => {
                 </Link>
               </ListItem>
               ))}
+              <ListItem key="facebook">
+                <FacebookIcon color="primary" sx={{ fontSize: 40}}/>      
+              </ListItem>
+              <ListItem key="Insta">
+                <InstagramIcon color="secondary" sx={{ fontSize: 40}}/>      
+              </ListItem>
           </List>
       </SwipeableDrawer>
 

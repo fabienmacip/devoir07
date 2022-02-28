@@ -19,7 +19,7 @@ export default function CardPhoto({photo}) {
 
   return (
 
-      <Card sx={{ width: 250 }} >
+      <Card sx={{ width: 250 }} className="carte" >
 
         <CardMedia
           component="img"

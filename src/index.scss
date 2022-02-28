@@ -41,24 +41,6 @@ form div {
   margin-top: 1rem;
 }
 
-/* nav {
-  display: flex;
-  justify-content: space-around;
-}
-nav a, nav span {
-  padding: 1.5rem;
-  background-color: rgb(238,238,238);
-  color: #000;
-}
-nav a:hover, nav span:hover {
-  background-color: rgb(243,243,243);
-  cursor: pointer;
-}
-
-nav img {
-  width: 10%;
-} */
-
 #home-div{
   position: relative;
   text-align: center;
@@ -107,8 +89,18 @@ h1, h3 {
 }
 
 
-
-/* .li-tarif div:nth-child(2) {
-  padding-left: 1rem;
+/* .MuiPaper-root {
+  background-color: white;
 } */
 
+.carte {
+  background-color: white!important;
+}
+
+.cat-button {
+  
+}
+
+#photo-solo {
+  margin-top: 1rem;
+}

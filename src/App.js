@@ -37,23 +37,14 @@ const HandleRoute = route => (
     <route.component {...props} />
   )} />
 );
-/* 
-<Route path="/" exact>
-<Photos />
-</Route>
-<Route path="/photos/:id">
-<Photo />
-</Route>
- */
+
+
 
 function App() {
   
-/*   {routes.map((route,i) =>(
-    <HandleRoute key={i} {...route} />
-  ))}
- */
-
   const [isAuthenticated,setIsAuthenticated] = useState(authAPI.isAuthenticated)
+
+
 
   useEffect(() => {
     authAPI.setup()
@@ -68,12 +59,6 @@ function App() {
 // <Route path="/admin" element={<PrivateRoute path="/admin" element={<AdminPhotosPage/>} />}></Route>
 // <PrivateRoute path="/admin" element={<AdminPhotosPage />}/>
   return (
-    <AuthContext.Provider
-      value={{
-        isAuthenticated,
-        setIsAuthenticated
-      }}
-    >
 
       <Container>
 
@@ -102,7 +87,7 @@ function App() {
 
       </Container>
 
-    </AuthContext.Provider>
+    
     
     
   );

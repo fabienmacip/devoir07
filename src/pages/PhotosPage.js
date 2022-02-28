@@ -53,9 +53,9 @@ export default function PhotosPage() {
         Galerie
       </h1>
       <div id="categories-div"><Grid container spacing={1} id="categories-nav">
-      <Grid item className='categories-nav' key={0}><Button variant="contained" type="submit" id={0} onClick={handleFiltreCategorie}>Tout</Button></Grid>
+      <Grid item className='categories-nav' key={0}><Button variant="contained" type="submit" id={0} onClick={handleFiltreCategorie} className="cat-button">Tout</Button></Grid>
         {isLoading ? "..." : categories['data'].map((c) => <Grid item className='categories-nav' key={c.id}>
-      <Button variant="contained" type="submit" id={c.id} onClick={handleFiltreCategorie}>{c['attributes'].titre}</Button></Grid>)}</Grid></div>
+      <Button variant="contained" type="submit" id={c.id} onClick={handleFiltreCategorie} className="cat-button">{c['attributes'].titre}</Button></Grid>)}</Grid></div>
       
       <h3>
         {filtreCategories != 0 ? categories['data'].filter((j) => {return j.id == filtreCategories}).map((j) => j['attributes'].titre) : ""}

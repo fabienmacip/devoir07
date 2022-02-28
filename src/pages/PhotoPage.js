@@ -50,7 +50,7 @@ export default function PhotoPage() {
   }
 
   return (
-    <div>
+    <div id="photo-solo">
         <Link to="/photos">
           <Button variant="contained" color="primary">
             
