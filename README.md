@@ -1,3 +1,30 @@
+# DEVOIR Développer la partie front-end d'une application web
+
+Lien 1ère connexion
+http://localhost:1337/admin/auth/register-admin
+
+Je ne parviens pas à mettre mon projet en ligne.
+
+Pour tester le projet, l'installer en local :
+REACT
+Clôner ce repository
+https://github.com/fabienmacip/devoir07.git
+
+STRAPI
+Clôner ce repository
+https://github.com/fabienmacip/devoir07-strapi.git
+
+Pour se connecter à STRAPI : 
+log : fabien.macip@gmail.com
+pass : Virtual11
+
+# --------------------------------------------------
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
